@@ -113,14 +113,33 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(this, student2.FirstName, Toast.LENGTH_SHORT).show();
                 break;
             case R.id.button14:
-//                Student student0 = new Student("Ivan0", "Ivanov0", 22);
-//
-//                Xml xmlFile = new XMLFormatter().getClass();
-//                String xml = xmlFile.
-//
-//                saveInternalFile("Student.xml", xml);
+                Student student0 = new Student("Ivan0", "Ivanov0", 22);
+
+                File xmlFile = new File(getFilesDir().getPath() + "/Student.xml");
+                try
+                {
+                    Serializer serializer = new Persister();
+                    serializer.write(student0, xmlFile);
+                }
+                catch (Exception e)
+                {
+                    e.printStackTrace();
+                }
                 break;
             case R.id.button15:
+                xmlFile = new File(getFilesDir().getPath() + "/Student.xml");
+                if (xmlFile.exists())
+                {
+                    try
+                    {
+                        Serializer serializer = new Persister();
+                        serializer.read(Student.class, xmlFile);
+                    }
+                    catch (Exception e)
+                    {
+                        e.printStackTrace();
+                    }
+                }
 
                 break;
         }
