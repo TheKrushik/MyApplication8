@@ -25,6 +25,10 @@ import java.io.FileReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.io.Reader;
+import java.io.StringReader;
+import java.io.StringWriter;
+import java.io.Writer;
 import java.util.logging.XMLFormatter;
 
 public class MainActivity extends AppCompatActivity {
@@ -114,33 +118,25 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.button14:
                 Student student0 = new Student("Ivan0", "Ivanov0", 22);
-
-                File xmlFile = new File(getFilesDir().getPath() + "/Student.xml");
-                try
-                {
-                    Serializer serializer = new Persister();
-                    serializer.write(student0, xmlFile);
-                }
-                catch (Exception e)
-                {
+                Writer writer = new StringWriter();
+                Serializer serializer = new Persister();
+                try {
+                    serializer.write(student0, writer);
+                    String xml = writer.toString();
+                    saveInternalFile("Student.xml", xml);
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
                 break;
             case R.id.button15:
-                xmlFile = new File(getFilesDir().getPath() + "/Student.xml");
-                if (xmlFile.exists())
-                {
-                    try
-                    {
-                        Serializer serializer = new Persister();
-                        serializer.read(Student.class, xmlFile);
-                    }
-                    catch (Exception e)
-                    {
-                        e.printStackTrace();
-                    }
+                Reader reader = new StringReader("Student.xml");
+                try {
+                    Serializer serializer1 = new Persister();
+                    Student student1 = serializer1.read(Student.class, reader, false);
+                    Toast.makeText(this, student1.LastName, Toast.LENGTH_SHORT).show();
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
-
                 break;
         }
     }
