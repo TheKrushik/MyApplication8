@@ -118,25 +118,44 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.button14:
                 Student student0 = new Student("Ivan0", "Ivanov0", 22);
-                Writer writer = new StringWriter();
-                Serializer serializer = new Persister();
+                File xmlFile = new File(getFilesDir().getPath() + "/Student.xml");
                 try {
-                    serializer.write(student0, writer);
-                    String xml = writer.toString();
-                    saveInternalFile("Student.xml", xml);
+                    Serializer serializer = new Persister();
+                    serializer.write(student0, xmlFile);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+//                Writer writer = new StringWriter();
+//                Serializer serializer = new Persister();
+//                try {
+//                    serializer.write(student0, writer);
+//                    String xml = writer.toString();
+//                    saveInternalFile("Student.xml", xml);
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
                 break;
             case R.id.button15:
-                Reader reader = new StringReader("Student.xml");
-                try {
-                    Serializer serializer1 = new Persister();
-                    Student student1 = serializer1.read(Student.class, reader, false);
-                    Toast.makeText(this, student1.LastName, Toast.LENGTH_SHORT).show();
-                } catch (Exception e) {
-                    e.printStackTrace();
+                File xmlFile2 = new File(getFilesDir().getPath() + "/Student.xml");
+                Student student1 = null;
+                if (xmlFile2.exists()){
+                    try {
+                        Serializer serializer1 = new Persister();
+                        student1 = serializer1.read(Student.class, xmlFile2);
+                        Toast.makeText(this, student1.LastName, Toast.LENGTH_SHORT).show();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
+
+//                try {
+//                    Reader reader = new StringReader("Student.xml");
+//                    Serializer serializer1 = new Persister();
+//                    Student student1 = serializer1.read(Student.class, reader, false);
+//                    Toast.makeText(this, student1.LastName, Toast.LENGTH_SHORT).show();
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
                 break;
         }
     }
