@@ -142,7 +142,7 @@ public class MainActivity extends AppCompatActivity {
                     try {
                         Serializer serializer1 = new Persister();
                         student1 = serializer1.read(Student.class, xmlFile2);
-                        Toast.makeText(this, student1.LastName, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this, student1.FirstName, Toast.LENGTH_SHORT).show();
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
