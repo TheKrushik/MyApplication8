@@ -19,6 +19,19 @@
             android:layout_height="match_parent"
             android:gravity="center_horizontal"
             android:orientation="vertical">
+            <Button
+                android:id="@+id/button14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="OnClick"
+                android:text="Save XML"/>
+
+            <Button
+                android:id="@+id/button15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="OnClick"
+                android:text="Read XML"/>
 
             <Button
                 android:id="@+id/button"
@@ -103,19 +116,7 @@
                 android:layout_height="wrap_content"
                 android:onClick="OnClick"
                 android:text="Read json"/>
-            <Button
-                android:id="@+id/button14"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:onClick="OnClick"
-                android:text="Save XML"/>
 
-            <Button
-                android:id="@+id/button15"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:onClick="OnClick"
-                android:text="Read XML"/>
         </LinearLayout>
     </ScrollView>
 </RelativeLayout>
