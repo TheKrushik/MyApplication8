@@ -26,5 +26,6 @@ public class Student {
         Age = age;
     }
 
-
+    public Student() {
+    }
 }
